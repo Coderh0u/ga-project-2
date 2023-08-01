@@ -19,7 +19,7 @@ const Card = (props) => {
             </div>
             <div className="row">
               <div className="col-sm-3">Authentication: </div>
-              <div className="col-sm-9">{props.auth ? props.auth : 'NONE'}</div>
+              <div className="col-sm-9">{props.auth ? props.auth : "NONE"}</div>
             </div>
             <div className="row">
               <div className="col-sm-3">HTTPS: </div>
@@ -34,7 +34,9 @@ const Card = (props) => {
             <div className="row">
               <div className="col-sm-3">Link: </div>
               <div className="col-sm-9">
-                <a href={props.link}>{props.link}</a>
+                <a href={props.link} target="_blank">
+                  {props.link}
+                </a>
               </div>
             </div>
             <div className="row">

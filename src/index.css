@@ -17,4 +17,5 @@
 button {
   margin: 0;
   padding: 1px 6px 1px 6px;
+  max-height: 42.8px;
 }

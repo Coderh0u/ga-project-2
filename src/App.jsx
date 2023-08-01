@@ -6,6 +6,8 @@ import Main from "./components/Main";
 import Categories from "./components/Categories";
 import NavBar from "./components/NavBar";
 import CategoryList from "./components/CategoryList";
+import Search from "./components/Search";
+import { Grid, Container } from "@mui/material";
 
 function App() {
   const [modal, setModal] = useState(false);
@@ -23,14 +25,29 @@ function App() {
 
   return (
     <>
-      <div className="container">
-        <NavBar></NavBar>
+      <div>
+        <Container>
+          <Grid container spacing={2} alignItems="center">
+            <Grid item xs={8}>
+              <NavBar></NavBar>
+            </Grid>
+            <Grid item xs={4}>
+              <Search></Search>
+            </Grid>
+          </Grid>
+        </Container>
         <Routes>
           <Route path="/main" element={<Main></Main>}></Route>
           <Route path="/categories" element={<Categories></Categories>}></Route>
           <Route
             path="/main/:item"
-            element={<CategoryList allData={allData} modal={modal} setModal={setModal}></CategoryList>}
+            element={
+              <CategoryList
+                allData={allData}
+                modal={modal}
+                setModal={setModal}
+              ></CategoryList>
+            }
           ></Route>
           <Route
             path="/random"
