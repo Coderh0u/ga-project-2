@@ -6,7 +6,7 @@ import Stack from "@mui/material/Stack";
 
 const Search = (props) => {
   const searchRef = useRef(null);
-  const [filteredData, setFilteredData] = useState([]);
+  // const [filteredData, setFilteredData] = useState([]);
 
   const searchApi = (allData) => {
     return allData.filter((obj) => {
@@ -19,7 +19,7 @@ const Search = (props) => {
   useEffect(() => {
     if (props.allData) {
       const filteredData = searchApi(props.allData);
-      setFilteredData(filteredData);
+      // setFilteredData(filteredData);
     }
   }, [props.allData]);
 
@@ -38,7 +38,7 @@ const Search = (props) => {
           onClick={() => {
             if (props.allData) {
               const filteredData = searchApi(props.allData);
-              setFilteredData(filteredData);
+              // setFilteredData(filteredData);
               console.log(filteredData);
             }
           }}
