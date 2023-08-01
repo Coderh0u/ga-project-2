@@ -27,6 +27,7 @@ const CategoryList = (props) => {
               <div className="row">
                 <div className="col-md-3">API: </div>
                 <div className="col-md-6">{item.API}</div>
+                <button className='col-md-3' onClick={props.setModal(true)}>More Info</button>
               </div>
               
             );

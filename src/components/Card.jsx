@@ -19,7 +19,7 @@ const Card = (props) => {
             </div>
             <div className="row">
               <div className="col-sm-3">Authentication: </div>
-              <div className="col-sm-9">{props.auth}</div>
+              <div className="col-sm-9">{props.auth ? props.auth : 'NONE'}</div>
             </div>
             <div className="row">
               <div className="col-sm-3">HTTPS: </div>

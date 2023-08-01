@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import All from "./All";
-import Categories from "./Categories";
+
 
 const Main = () => {
   return (

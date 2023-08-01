@@ -30,7 +30,7 @@ function App() {
           <Route path="/categories" element={<Categories></Categories>}></Route>
           <Route
             path="/main/:item"
-            element={<CategoryList allData={allData}></CategoryList>}
+            element={<CategoryList allData={allData} modal={modal} setModal={setModal}></CategoryList>}
           ></Route>
           <Route
             path="/random"
