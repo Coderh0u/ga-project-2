@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import styles from "../assets/Modal.module.css";
+import { Typography, Card, CardActions, CardContent, CssBaseline, CardHeader, CardMedia } from "@mui/material";
 
-const Card = (props) => {
+const APICard = (props) => {
   return (
     <>
       {ReactDOM.createPortal(
-        <div className={styles.backdrop}>
-          <div className={styles.modal}>
+        <div>
+          <div>
             <br />
             <div className="row">
               <div className="col-sm-3">API: </div>
@@ -62,4 +62,4 @@ const Card = (props) => {
   );
 };
 
-export default Card;
+export default APICard;

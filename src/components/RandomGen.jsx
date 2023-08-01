@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Card from "./Card";
+import APICard from "./APICard";
 
 const RandomGen = (props) => {
   const [randCount, setRandCount] = useState(0);
@@ -32,7 +32,7 @@ const RandomGen = (props) => {
         </button>
       </div>
       {props.modal && randApi && (
-        <Card
+        <APICard
           api={randApi.entries[0].API}
           desc={randApi.entries[0].Description}
           auth={randApi.entries[0].Auth}
@@ -41,7 +41,7 @@ const RandomGen = (props) => {
           link={randApi.entries[0].Link}
           cat={randApi.entries[0].Category}
           setModal={props.setModal}
-        ></Card>
+        ></APICard>
       )}
     </>
   );

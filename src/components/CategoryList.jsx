@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
-import Card from "./Card";
+import APICard from "./APICard";
 
 const CategoryList = (props) => {
   const params = useParams();
@@ -56,7 +56,7 @@ const CategoryList = (props) => {
         </>
       )}
       {props.modal && (
-        <Card
+        <APICard
           api={entriesInCat.entries[idRef.current].API}
           desc={entriesInCat.entries[idRef.current].Description}
           auth={entriesInCat.entries[idRef.current].Auth}
@@ -65,7 +65,7 @@ const CategoryList = (props) => {
           link={entriesInCat.entries[idRef.current].Link}
           cat={entriesInCat.entries[idRef.current].Category}
           setModal={props.setModal}
-        ></Card>
+        ></APICard>
       )}
     </>
   );

@@ -8,7 +8,7 @@ function Test() {
     const res = await fetch("https://api.publicapis.org/entries");
 
     const data = await res.json();
-    setTest(data);
+    setTest(data.entries);
   };
   useEffect(() => {
     getData();
