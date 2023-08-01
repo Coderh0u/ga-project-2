@@ -14,3 +14,7 @@
   -webkit-text-size-adjust: 100%;
 }
 
+button {
+  margin: 0;
+  padding: 1px 6px 1px 6px;
+}
