@@ -28,20 +28,76 @@ function App() {
   const [modal, setModal] = useState(false);
   const [allData, setAllData] = useState();
   const [menuModal, setMenuModal] = useState(false);
-  // filter for Auth, HTTPS, Cors
+  // filter for Auth, HTTPS, Cors ====================
   const [auth, setAuth] = useState(false);
   const [https, setHttps] = useState(false);
   const [cors, setCors] = useState(false);
-
+  const [filteredData, setFilteredData] = useState();
+  // =================================================
   const getAll = async () => {
     const res = await fetch("https://api.publicapis.org/entries");
     const data = await res.json();
+    // cut here
+    // const dummyArr = [];
+    // if (auth) {
+    //   dummyArr.push(data.entries.filter((entry) => entry.Auth === ""));
+    // } else {
+    //   dummyArr.push(data.entries);
+    // }
+    // end cut
     setAllData(data.entries);
   };
 
   useEffect(() => {
     getAll();
   }, []);
+
+  // Filter function
+  const filterData = () => {
+    const filterArr = [];
+
+    // for (const entry of allData) {
+    //   if (auth && entry.Auth !== "") {
+    //     filterArr.push(entry)
+    //   } else if (https && entry.HTTPS === true) {
+    //     filterArr.push(entry)
+    //   } else if (cors && entry.cors === "no") {
+    //     filterArr.push(entry)
+    //   }
+    // }
+
+    // allData.map((entry))
+    // if (auth) {
+    //   const filtered =
+    // }
+
+    const filterAuth = () => {
+      return allData.filter((entry) => entry.Auth === "");
+    };
+    const filterHttps = () => {
+      return allData.filter((entry) => entry.HTTPS === true);
+    };
+    const filterCors = () => {
+      return allData.filter((entry) => entry.Cors === "no");
+    };
+    if (auth) {
+      filterArr.push(filterAuth);
+    }
+    if (https) {
+      filterArr.push(filterHttps);
+    }
+    if (cors) {
+      filterArr.push(filterCors);
+    }
+    const outputArr = [filterArr.forEach((func) => func())];
+
+    setFilteredData();
+  };
+
+  useEffect(() => {
+    filterData();
+  }, [auth, https, cors]);
+  // =================================================
 
   return (
     <>
@@ -71,6 +127,8 @@ function App() {
             setHttps={setHttps}
             cors={cors}
             setCors={setCors}
+            allData={allData}
+            filteredData={filteredData}
           ></Filter>
         </Toolbar>
       </AppBar>

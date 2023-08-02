@@ -8,6 +8,7 @@ import {
   Typography,
   Modal,
 } from "@mui/material";
+import ClassNameGenerator from "@mui/utils/ClassNameGenerator/ClassNameGenerator";
 
 const Search = (props) => {
   const searchRef = useRef(null);
@@ -16,6 +17,9 @@ const Search = (props) => {
 
   // MUI styling
   const style = {
+    button: {
+      border: "2px solid #00000099",
+    },
     box: {
       position: "absolute",
       top: "50%",
@@ -30,16 +34,18 @@ const Search = (props) => {
   };
 
   const searchApi = (allData) => {
-    return allData.filter((obj) => {
-      return Object.values(obj).some((str) => {
-        return String(str).includes(searchRef.current);
+    if (searchRef.current) {
+      return allData.filter((obj) => {
+        return Object.values(obj).some((str) => {
+          return String(str).includes(searchRef.current);
+        });
       });
-    });
+    }
   };
 
   useEffect(() => {
     if (props.allData) {
-      const filteredData = searchApi(props.allData);
+      searchApi(props.allData);
     }
   }, [props.allData]);
 
@@ -53,17 +59,20 @@ const Search = (props) => {
           onChange={(e) => (searchRef.current = e.target.value)}
         />
         <Button
-          variant="outlined"
+          // variant="outlined"
           color="primary"
           onClick={() => {
-            if (props.allData) {
+            if (props.allData && searchRef.current) {
               foundData.current = searchApi(props.allData);
-
+              setSearchModal(true);
               console.log(foundData.current);
             }
+            console.log(searchRef.current);
             setSearchModal(true);
+            searchRef.current = null;
+            console.log(searchRef.current);
           }}
-          style={{ color: "black" }}
+          style={{ color: "#00000099" }}
         >
           Search
         </Button>

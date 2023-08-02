@@ -25,6 +25,16 @@ const Filter = (props) => {
               />
             }
           />
+          {/* test */}
+          <button
+            onClick={() => {
+              console.log(props.filteredData);
+              console.log(props.auth);
+            }}
+          >
+            Test
+          </button>
+          {/* test */}
           <FormControlLabel
             label="HTTPS only"
             control={
