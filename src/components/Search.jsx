@@ -1,12 +1,33 @@
 import React, { useRef, useState, useEffect } from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
+// importing from MUI
+import {
+  Box,
+  TextField,
+  Button,
+  Stack,
+  Typography,
+  Modal,
+} from "@mui/material";
 
 const Search = (props) => {
   const searchRef = useRef(null);
-  // const [filteredData, setFilteredData] = useState([]);
+  const [searchModal, setSearchModal] = useState(false);
+  const foundData = useRef([]);
+
+  // MUI styling
+  const style = {
+    box: {
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      width: "80%",
+      bgcolor: "background.paper",
+      border: "2px solid #000",
+      boxShadow: 24,
+      p: 4,
+    },
+  };
 
   const searchApi = (allData) => {
     return allData.filter((obj) => {
@@ -19,7 +40,6 @@ const Search = (props) => {
   useEffect(() => {
     if (props.allData) {
       const filteredData = searchApi(props.allData);
-      // setFilteredData(filteredData);
     }
   }, [props.allData]);
 
@@ -37,15 +57,31 @@ const Search = (props) => {
           color="primary"
           onClick={() => {
             if (props.allData) {
-              const filteredData = searchApi(props.allData);
-              // setFilteredData(filteredData);
-              console.log(filteredData);
+              foundData.current = searchApi(props.allData);
+
+              console.log(foundData.current);
             }
+            setSearchModal(true);
           }}
           style={{ color: "black" }}
         >
           Search
         </Button>
+        <Modal open={searchModal} onClose={() => setSearchModal(false)}>
+          <Box sx={style.box}>
+            {foundData.current.map((item) => {
+              return (
+                <Button variant="outlined">
+                  <strong>API: </strong>
+                  <Typography>{item.API}</Typography>
+                  <br />
+                  <strong>Description: </strong>
+                  <Typography>{item.Description}</Typography>
+                </Button>
+              );
+            })}
+          </Box>
+        </Modal>
       </Stack>
     </>
   );

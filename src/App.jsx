@@ -7,6 +7,8 @@ import Categories from "./components/Categories";
 import NavBar from "./components/NavBar";
 import CategoryList from "./components/CategoryList";
 import Search from "./components/Search";
+import Filter from "./Filter";
+
 import {
   Grid,
   Container,
@@ -26,6 +28,10 @@ function App() {
   const [modal, setModal] = useState(false);
   const [allData, setAllData] = useState();
   const [menuModal, setMenuModal] = useState(false);
+  // filter for Auth, HTTPS, Cors
+  const [auth, setAuth] = useState(false);
+  const [https, setHttps] = useState(false);
+  const [cors, setCors] = useState(false);
 
   const getAll = async () => {
     const res = await fetch("https://api.publicapis.org/entries");
@@ -58,6 +64,14 @@ function App() {
           <ApiIcon />
           <Typography variant="h4">API of APIs</Typography>
           <Search allData={allData}></Search>
+          <Filter
+            auth={auth}
+            setAuth={setAuth}
+            https={https}
+            setHttps={setHttps}
+            cors={cors}
+            setCors={setCors}
+          ></Filter>
         </Toolbar>
       </AppBar>
       <main>
