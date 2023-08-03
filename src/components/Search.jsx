@@ -140,7 +140,7 @@ const Search = (props) => {
             cat={foundData.current[foundIdx].Category}
             setModal={props.setModal}
             resetState={setFoundIdx}
-            // resetState={}
+          
           ></APICard>
         )}
       </Stack>
