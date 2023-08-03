@@ -28,8 +28,16 @@ const Filter = (props) => {
           {/* test */}
           <button
             onClick={() => {
-              console.log(props.filteredData);
-              console.log(props.auth);
+              console.log("filteredData", props.filteredData);
+              console.log(
+                "auth " +
+                  props.auth +
+                  " https " +
+                  props.https +
+                  " cors " +
+                  props.cors
+              );
+              console.log("interArr", props.interArr);
             }}
           >
             Test

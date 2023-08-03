@@ -37,14 +37,6 @@ function App() {
   const getAll = async () => {
     const res = await fetch("https://api.publicapis.org/entries");
     const data = await res.json();
-    // cut here
-    // const dummyArr = [];
-    // if (auth) {
-    //   dummyArr.push(data.entries.filter((entry) => entry.Auth === ""));
-    // } else {
-    //   dummyArr.push(data.entries);
-    // }
-    // end cut
     setAllData(data.entries);
   };
 
@@ -53,50 +45,51 @@ function App() {
   }, []);
 
   // Filter function
+  let outputArr = [];
+
   const filterData = () => {
-    const filterArr = [];
+    if (allData) {
+      let interArr = [...allData];
+      const filterArr = [];
+      // filter by Auth
+      const filterAuth = () => {
+        interArr = interArr.filter((entry) => entry.Auth === "");
+      };
+      // filter by HTTPS
+      const filterHttps = () => {
+        interArr = interArr.filter((entry) => entry.HTTPS === true);
+      };
+      // filter by Cors
+      const filterCors = () => {
+        interArr = interArr.filter((entry) => entry.Cors === "no");
+      };
+      // compiling filter
+      if (auth) {
+        filterArr.push(filterAuth);
+      }
+      if (https) {
+        filterArr.push(filterHttps);
+      }
+      if (cors) {
+        filterArr.push(filterCors);
+      }
 
-    // for (const entry of allData) {
-    //   if (auth && entry.Auth !== "") {
-    //     filterArr.push(entry)
-    //   } else if (https && entry.HTTPS === true) {
-    //     filterArr.push(entry)
-    //   } else if (cors && entry.cors === "no") {
-    //     filterArr.push(entry)
-    //   }
-    // }
+      console.log("filterArr: ", filterArr);
 
-    // allData.map((entry))
-    // if (auth) {
-    //   const filtered =
-    // }
-
-    const filterAuth = () => {
-      return allData.filter((entry) => entry.Auth === "");
-    };
-    const filterHttps = () => {
-      return allData.filter((entry) => entry.HTTPS === true);
-    };
-    const filterCors = () => {
-      return allData.filter((entry) => entry.Cors === "no");
-    };
-    if (auth) {
-      filterArr.push(filterAuth);
+      for (let i = 0; i < filterArr.length; i++) {
+        filterArr[i]();
+      }
+      setFilteredData(interArr);
     }
-    if (https) {
-      filterArr.push(filterHttps);
-    }
-    if (cors) {
-      filterArr.push(filterCors);
-    }
-    const outputArr = [filterArr.forEach((func) => func())];
-
-    setFilteredData();
   };
 
   useEffect(() => {
     filterData();
+    // const uniqueOutputArr = [...new Set(interArr)];
+    // setFilteredData(uniqueOutputArr);
+    // outputArr = [];
   }, [auth, https, cors]);
+
   // =================================================
 
   return (
