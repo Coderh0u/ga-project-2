@@ -19,19 +19,13 @@ const RandomGen = (props) => {
     }
   };
 
-  // useEffect(() => {
-  //   getRandApi();
-  // }, [randCount]);
-
   return (
     <>
       {/* generate random api button */}
       <div className="row">
         <div className="col-md-3"></div>
-        <div className="col-md-3"></div>
-        <div className="col-md-3"></div>
         <button
-          className="col-md-3"
+          className="col-md-9"
           onClick={() => {
             props.setModal(true);
             getRandApi();
@@ -40,7 +34,7 @@ const RandomGen = (props) => {
             console.log(randCount);
           }}
         >
-          Generate Random API
+          Random
         </button>
       </div>
       {props.modal && randApi && (

@@ -95,7 +95,7 @@ function App() {
       <AppBar position="relative" maxWidth="100%">
         {/* Menu bar? */}
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
@@ -106,7 +106,7 @@ function App() {
             }}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
 
           {/* Title of Website ===============================================================*/}
           <ApiIcon />
@@ -130,11 +130,13 @@ function App() {
       </AppBar>
       <main>
         <Container maxWidth="small">
-          <Grid container spacing={2} alignItems="center">
-            <Grid item xs={8}>
-              <NavBar modal={modal} setModal={setModal} allData={allData} filteredData={filteredData}></NavBar>
-            </Grid>
-            <Grid item xs={4}></Grid>
+          <Grid item xs={8}>
+            <NavBar
+              modal={modal}
+              setModal={setModal}
+              allData={allData}
+              filteredData={filteredData}
+            ></NavBar>
           </Grid>
         </Container>
 

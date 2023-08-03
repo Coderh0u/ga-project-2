@@ -1,6 +1,7 @@
 .navbar {
   height: 5rem;
   background-color: grey;
+  width: 80%;
 }
 
 .navbar nav {

@@ -9,12 +9,13 @@ import {
   CardHeader,
   CardMedia,
 } from "@mui/material";
+import style from "../assets/Modal.module.css";
 
 const APICard = (props) => {
   return (
     <>
       {ReactDOM.createPortal(
-        <div>
+        <div className={style.modal}>
           <div>
             <br />
             <div className="row">
