@@ -33,9 +33,9 @@ const Search = (props) => {
     },
   };
 
-  const searchApi = (allData) => {
+  const searchApi = (data) => {
     if (searchRef.current) {
-      return allData.filter((obj) => {
+      return data.filter((obj) => {
         return Object.values(obj).some((str) => {
           return String(str).includes(searchRef.current);
         });
@@ -44,10 +44,12 @@ const Search = (props) => {
   };
 
   useEffect(() => {
-    if (props.allData) {
+    if (props.filteredData) {
+      searchApi(props.filteredData);
+    } else if (props.allData) {
       searchApi(props.allData);
     }
-  }, [props.allData]);
+  }, [props.allData, props.filteredData]);
 
   return (
     <>

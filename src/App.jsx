@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import RandomGen from "./components/RandomGen";
 import Main from "./components/Main";
 import Categories from "./components/Categories";
 import NavBar from "./components/NavBar";
@@ -45,8 +44,6 @@ function App() {
   }, []);
 
   // Filter function
-  let outputArr = [];
-
   const filterData = () => {
     if (allData) {
       let interArr = [...allData];
@@ -96,6 +93,7 @@ function App() {
     <>
       <CssBaseline />
       <AppBar position="relative" maxWidth="100%">
+        {/* Menu bar? */}
         <Toolbar>
           <IconButton
             size="large"
@@ -110,9 +108,14 @@ function App() {
             <MenuIcon />
           </IconButton>
 
+          {/* Title of Website ===============================================================*/}
           <ApiIcon />
           <Typography variant="h4">API of APIs</Typography>
-          <Search allData={allData}></Search>
+
+          {/* search bar */}
+          <Search allData={allData} filteredData={filteredData}></Search>
+
+          {/* filter component ===============================================================*/}
           <Filter
             auth={auth}
             setAuth={setAuth}
@@ -129,7 +132,7 @@ function App() {
         <Container maxWidth="small">
           <Grid container spacing={2} alignItems="center">
             <Grid item xs={8}>
-              <NavBar></NavBar>
+              <NavBar modal={modal} setModal={setModal} allData={allData} filteredData={filteredData}></NavBar>
             </Grid>
             <Grid item xs={4}></Grid>
           </Grid>
@@ -152,8 +155,9 @@ function App() {
             </Box>
           </Slide>
         </Modal>
-        <RandomGen modal={modal} setModal={setModal}></RandomGen>
+        {/* <RandomGen modal={modal} setModal={setModal}></RandomGen> */}
         <Routes>
+          <Route path="/" element={<Main></Main>}></Route>
           <Route path="/main" element={<Main></Main>}></Route>
           <Route path="/categories" element={<Categories></Categories>}></Route>
           <Route
