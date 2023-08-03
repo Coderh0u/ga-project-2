@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import APICard from "./APICard";
 // importing from MUI
 import {
   Box,
@@ -8,12 +9,12 @@ import {
   Typography,
   Modal,
 } from "@mui/material";
-import ClassNameGenerator from "@mui/utils/ClassNameGenerator/ClassNameGenerator";
 
 const Search = (props) => {
   const searchRef = useRef(null);
   const [searchModal, setSearchModal] = useState(false);
   const foundData = useRef([]);
+  const foundIdx = useRef();
 
   // MUI styling
   const style = {
@@ -66,10 +67,13 @@ const Search = (props) => {
           onChange={(e) => (searchRef.current = e.target.value)}
         />
         <Button
-          // variant="outlined"
-          color="primary"
+          variant="outlined"
           onClick={() => {
-            if (props.allData && searchRef.current) {
+            if (props.filteredData && searchRef.current) {
+              foundData.current = searchApi(props.filteredData);
+              setSearchModal(true);
+              console.log(foundData.current);
+            } else if (props.allData && searchRef.current) {
               foundData.current = searchApi(props.allData);
               setSearchModal(true);
               console.log(foundData.current);
@@ -79,7 +83,12 @@ const Search = (props) => {
             searchRef.current = null;
             console.log(searchRef.current);
           }}
-          style={{ color: "#00000099" }}
+          style={{
+            marginTop: "5px",
+            marginRight: "20px",
+            color: "white",
+            border: "2px solid #00000099",
+          }}
         >
           Search
         </Button>
@@ -89,10 +98,16 @@ const Search = (props) => {
           onClose={() => setSearchModal(false)}
         >
           <Box sx={style.box}>
-            {foundData.current.map((item) => {
+            {foundData.current.map((item, idx) => {
               return (
-                // OnClick do something here
                 <Button
+                  onClick={() => {
+                    setSearchModal(false);
+                    foundIdx.current = idx;
+                    props.setModal(true);
+                    console.log("props.modal", props.modal);
+                    console.log("foundIDx", foundIdx.current);
+                  }}
                   sx={style.button}
                   style={{
                     width: "90%",
@@ -109,13 +124,23 @@ const Search = (props) => {
                     <strong>Description: </strong>
                     {item.Description}
                   </Typography>
-
-                  {/* <Typography align={"right"}></Typography> */}
                 </Button>
               );
             })}
           </Box>
         </Modal>
+        {props.modal && (
+          <APICard
+            api={foundData.current[foundIdx.current].API}
+            desc={foundData.current[foundIdx.current].Description}
+            auth={foundData.current[foundIdx.current].Auth}
+            https={foundData.current[foundIdx.current].HTTPS}
+            cors={foundData.current[foundIdx.current].Cors}
+            link={foundData.current[foundIdx.current].Link}
+            cat={foundData.current[foundIdx.current].Category}
+            setModal={props.setModal}
+          ></APICard>
+        )}
       </Stack>
     </>
   );

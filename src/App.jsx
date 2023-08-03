@@ -8,6 +8,7 @@ import CategoryList from "./components/CategoryList";
 import Search from "./components/Search";
 import Filter from "./Filter";
 
+
 import {
   Grid,
   Container,
@@ -21,7 +22,7 @@ import {
   Slide,
 } from "@mui/material";
 import ApiIcon from "@mui/icons-material/Api";
-import MenuIcon from "@mui/icons-material/Menu";
+
 
 function App() {
   const [modal, setModal] = useState(false);
@@ -113,7 +114,12 @@ function App() {
           <Typography variant="h4">API of APIs</Typography>
 
           {/* search bar */}
-          <Search allData={allData} filteredData={filteredData}></Search>
+          <Search
+            allData={allData}
+            filteredData={filteredData}
+            setModal={setModal}
+            modal={modal}
+          ></Search>
 
           {/* filter component ===============================================================*/}
           <Filter
