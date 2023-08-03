@@ -17,8 +17,13 @@ const Search = (props) => {
 
   // MUI styling
   const style = {
+    modal: {
+      overflow: "scroll",
+    },
     button: {
       border: "2px solid #00000099",
+
+      height: "75px",
     },
     box: {
       position: "absolute",
@@ -78,17 +83,34 @@ const Search = (props) => {
         >
           Search
         </Button>
-        <Modal open={searchModal} onClose={() => setSearchModal(false)}>
+        <Modal
+          sx={style.modal}
+          open={searchModal}
+          onClose={() => setSearchModal(false)}
+        >
           <Box sx={style.box}>
             {foundData.current.map((item) => {
               return (
-                // OnClick do something here  
-                <Button variant="outlined">
-                  <strong>API: </strong>
-                  <Typography>{item.API}</Typography>
-                  <br />
-                  <strong>Description: </strong>
-                  <Typography>{item.Description}</Typography>
+                // OnClick do something here
+                <Button
+                  sx={style.button}
+                  style={{
+                    width: "90%",
+                    height: "75",
+                    align: "center",
+                    padding: 40,
+                  }}
+                  variant="outlined"
+                >
+                  <Typography align={"center"}>
+                    <strong>API: </strong>
+                    {item.API}
+                    <br />
+                    <strong>Description: </strong>
+                    {item.Description}
+                  </Typography>
+
+                  {/* <Typography align={"right"}></Typography> */}
                 </Button>
               );
             })}
