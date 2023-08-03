@@ -37,7 +37,7 @@ const Search = (props) => {
     if (searchRef.current) {
       return data.filter((obj) => {
         return Object.values(obj).some((str) => {
-          return String(str).includes(searchRef.current);
+          return String(str).includes(searchRef.current.toLowerCase());
         });
       });
     }
@@ -82,6 +82,7 @@ const Search = (props) => {
           <Box sx={style.box}>
             {foundData.current.map((item) => {
               return (
+                // OnClick do something here  
                 <Button variant="outlined">
                   <strong>API: </strong>
                   <Typography>{item.API}</Typography>

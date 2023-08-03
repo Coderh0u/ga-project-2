@@ -26,7 +26,7 @@ const Filter = (props) => {
             }
           />
           {/* test */}
-          <button
+          {/* <button
             onClick={() => {
               console.log("filteredData", props.filteredData);
               console.log(
@@ -41,7 +41,7 @@ const Filter = (props) => {
             }}
           >
             Test
-          </button>
+          </button> */}
           {/* test */}
           <FormControlLabel
             label="HTTPS only"
