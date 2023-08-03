@@ -47,6 +47,7 @@ const RandomGen = (props) => {
           link={randApi.Link}
           cat={randApi.Category}
           setModal={props.setModal}
+          resetState={setRandApi}
         ></APICard>
       )}
     </>

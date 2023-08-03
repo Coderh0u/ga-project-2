@@ -14,7 +14,7 @@ const Search = (props) => {
   const searchRef = useRef(null);
   const [searchModal, setSearchModal] = useState(false);
   const foundData = useRef([]);
-  const foundIdx = useRef();
+  const [foundIdx, setFoundIdx] = useState();
 
   // MUI styling
   const style = {
@@ -103,10 +103,10 @@ const Search = (props) => {
                 <Button
                   onClick={() => {
                     setSearchModal(false);
-                    foundIdx.current = idx;
+                    setFoundIdx(idx);
                     props.setModal(true);
                     console.log("props.modal", props.modal);
-                    console.log("foundIDx", foundIdx.current);
+                    console.log("foundIDx", foundIdx);
                   }}
                   sx={style.button}
                   style={{
@@ -129,16 +129,18 @@ const Search = (props) => {
             })}
           </Box>
         </Modal>
-        {props.modal && (
+        {props.modal && foundIdx && (
           <APICard
-            api={foundData.current[foundIdx.current].API}
-            desc={foundData.current[foundIdx.current].Description}
-            auth={foundData.current[foundIdx.current].Auth}
-            https={foundData.current[foundIdx.current].HTTPS}
-            cors={foundData.current[foundIdx.current].Cors}
-            link={foundData.current[foundIdx.current].Link}
-            cat={foundData.current[foundIdx.current].Category}
+            api={foundData.current[foundIdx].API}
+            desc={foundData.current[foundIdx].Description}
+            auth={foundData.current[foundIdx].Auth}
+            https={foundData.current[foundIdx].HTTPS}
+            cors={foundData.current[foundIdx].Cors}
+            link={foundData.current[foundIdx].Link}
+            cat={foundData.current[foundIdx].Category}
             setModal={props.setModal}
+            resetState={setFoundIdx}
+            // resetState={}
           ></APICard>
         )}
       </Stack>

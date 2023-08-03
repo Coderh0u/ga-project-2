@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import CategoryList from "./components/CategoryList";
 import Search from "./components/Search";
 import Filter from "./Filter";
+import RandomGen from "./components/RandomGen-copy";
 
 
 import {
@@ -132,6 +133,7 @@ function App() {
             allData={allData}
             filteredData={filteredData}
           ></Filter>
+          {/* ============================================= */}
         </Toolbar>
       </AppBar>
       <main>
@@ -163,7 +165,7 @@ function App() {
             </Box>
           </Slide>
         </Modal>
-        {/* <RandomGen modal={modal} setModal={setModal}></RandomGen> */}
+       
         <Routes>
           <Route path="/" element={<Main></Main>}></Route>
           <Route path="/main" element={<Main></Main>}></Route>

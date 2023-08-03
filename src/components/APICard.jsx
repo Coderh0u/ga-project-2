@@ -58,6 +58,7 @@ const APICard = (props) => {
                 className="col-md-3"
                 onClick={() => {
                   props.setModal(false);
+                  props.resetState(null);
                 }}
               >
                 Back
